@@ -10,22 +10,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    </head>
+
+    <script src='script.js'></script>
+</head>
 <body>
     <header>
-        <div id="logo">Pizzera Podpłomień
-        <img src="src/img/logo.png" height="50px" width="50px" alt="pizza_photo">
+        <div class="logo-container">
+            <div class="logo">
+                Pizzera Podpłomień
+                <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
+            </div>
+            <nav class="menu-links">
+                <a href="index.html">Strona główna</a>
+                <a href="menu.html" >Menu</a>
+                <a href="#" id="dark-mode-toggle">Dark Mode</a>
+            </nav>
         </div>
-        <div id="logo"><a href="menu.html">Menu</a></div>
-        <div id="logo"><a href="stworz.html">Dark Mode</a></div>
     </header>
+    <div class="background-image">
 
-    <div class="wiersz">
-        </div>
-
-    <article id="intro">
+    <div id="intro">
         Witamy w pizzeri.
-    </article>
+    </div>
 
     <div style="text-align: center; margin-top: 50px;">
         <h2>Twoja Pepperoni Pizza (na Canvasie!)</h2>
@@ -40,37 +46,37 @@
     // Lista składników z obrazkami
     const ingredients = {
         pepperoni: { name: 'Pepperoni', img: 'src/img/peperoni.png' },
-        ham: { name: 'Szynka', img: 'src/img/ingredients/ham.png' },
-        garlic: { name: 'Czosnek', img: 'src/img/ingredients/garlic.png' },
-        onion: { name: 'Cebula', img: 'src/img/ingredients/onion.png' },
-        corn: { name: 'Kukurydza', img: 'src/img/ingredients/corn.png' },
-        pineapple: { name: 'Ananas', img: 'src/img/ingredients/pineapple.png' },
-        olives: { name: 'Czarne oliwki', img: 'src/img/ingredients/olives.png' },
-        jalapeno: { name: 'Jalapeno', img: 'src/img/ingredients/jalapeno.png' },
-        chickenKebab: { name: 'Kebab z kurczaka', img: 'src/img/ingredients/chicken_kebab.png' },
-        oregano: { name: 'Oregano', img: 'src/img/ingredients/oregano.png' },
-        greenPepper: { name: 'Zielona papryka', img: 'src/img/ingredients/green_pepper.png' },
-        mushrooms: { name: 'Pieczarki', img: 'src/img/ingredients/mushrooms.png' },
-        roastedChicken: { name: 'Pieczony kurczak', img: 'src/img/ingredients/roasted_chicken.png' },
-        cherryTomatoes: { name: 'Pomidorki koktajlowe', img: 'src/img/ingredients/cherry_tomatoes.png' }
+        ham: { name: 'Szynka', img: 'src/img/ham.png' },
+        garlic: { name: 'Czosnek', img: 'src/img/garlic.png' },
+        onion: { name: 'Cebula', img: 'src/img/onion.png' },
+        corn: { name: 'Kukurydza', img: 'src/img/corn.png' },
+        pineapple: { name: 'Ananas', img: 'src/img/pineapple.png' },
+        olives: { name: 'Czarne oliwki', img: 'src/img/olives.png' },
+        jalapeno: { name: 'Jalapeno', img: 'src/img/jalapeno.png' },
+        chickenKebab: { name: 'Kebab z kurczaka', img: 'src/img/chicken_kebab.png' },
+        oregano: { name: 'Oregano', img: 'src/img/oregano.png' },
+        greenPepper: { name: 'Zielona papryka', img: 'src/img/greenpepper.png' },
+        mushrooms: { name: 'Pieczarki', img: 'src/img/mushrooms.png' },
+        roastedChicken: { name: 'Pieczony kurczak', img: 'src/img/roastedchicken.png' },
+        cherryTomatoes: { name: 'Pomidorki koktajlowe', img: 'src/img/tomato.png' }
     };
 
     // Konfiguracja pizzy
     const pizzaConfig = {
-        pepperoni: localStorage.getItem("peperoni"),
-        ham: 0,
-        garlic: 0,
-        onion: 0,
-        corn: 0,
-        pineapple: 0,
-        olives: 0,
-        jalapeno: 0,
+        pepperoni: localStorage.getItem("pepperoni"),
+        ham: localStorage.getItem("ham"),
+        garlic: localStorage.getItem("garlic"),
+        onion: localStorage.getItem("onion"),
+        corn: localStorage.getItem("corn"),
+        pineapple: localStorage.getItem("pineapple"),
+        olives: localStorage.getItem("olives"),
+        jalapeno: localStorage.getItem("jalapeno"),
         chickenKebab: 0,
-        oregano: 0,
-        greenPepper: 0,
-        mushrooms: 0,
-        roastedChicken: 0,
-        cherryTomatoes: 0
+        oregano: localStorage.getItem("oregano"),
+        greenPepper: localStorage.getItem("greenpepper"),
+        mushrooms: localStorage.getItem("mushrooms"),
+        roastedChicken: localStorage.getItem("roastedchicken"),
+        cherryTomatoes: localStorage.getItem("tomato")
     };
 
     // Ładowanie obrazka
@@ -111,7 +117,7 @@
                 positions.push({ 
                     x: x, 
                     y: y,
-                    size: 20 + Math.random() * 10 // losowy rozmiar
+                    size: 30 + Math.random() * 10 // losowy rozmiar
                 });
             }
         }
