@@ -1,8 +1,8 @@
-localStorage.setItem("name", "Jan");
-localStorage.setItem("age", "25");
+
 //window.location.href = "zamowienia.html";
 function zamow(pizza)
 {
-
-console.log(pizza);
+localStorage.setItem("nazwa", pizza);
+localStorage.setItem("obraz", pizza+".png");
+window.location.href = "zamowienia.html";
 }
