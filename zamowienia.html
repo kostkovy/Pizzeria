@@ -1,49 +1,43 @@
 <!DOCTYPE html>
-<html lang="PL-pl">
+<html lang="pl-PL">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Pizzeria Podpłomień! Najlepsza pizza w internecie!</title>
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
-    <script src='script.js'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="logo-container">
             <div class="logo">
-                Pizzera Podpłomień
+                Pizzeria Podpłomień
                 <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
             </div>
             <nav class="menu-links">
                 <a href="index.html">Strona główna</a>
-                <a href="menu.html" >Menu</a>
+                <a href="menu.html">Menu</a>
                 <a href="#" id="dark-mode-toggle">Dark Mode</a>
             </nav>
         </div>
     </header>
-    <div class="background-image">
 
-    <div id="intro">
-        Witamy w pizzeri.
-    </div>
-
-    <div style="text-align: center; margin-top: 50px;">
-        <h2>Twoja Pepperoni Pizza (na Canvasie!)</h2>
-        <canvas id="pepperoniPizzaCanvas" width="400" height="400" style="border: 1px solid #ccc; background-color: #f0f0f0;"></canvas>
+    <div class="pizza-builder-container">
+        <div class="pizza-canvas">
+            <h2>Twoja pizza 🍕</h2>
+            <canvas id="pepperoniPizzaCanvas" width="400" height="400" style="border: 1px solid #ccc; background-color: #f0f0f0;"></canvas>
+        </div>
+        <div class="ingredient-panel">
+            <h3>Składniki:</h3>
+            <div id="ingredientList"></div>
+        </div>
     </div>
 
     <script>
-     document.addEventListener('DOMContentLoaded', function() {
-    const canvas = document.getElementById('pepperoniPizzaCanvas');
-    const ctx = canvas.getContext('2d');
-
-    // Lista składników z obrazkami
     const ingredients = {
         pepperoni: { name: 'Pepperoni', img: 'src/img/peperoni.png' },
         ham: { name: 'Szynka', img: 'src/img/ham.png' },
@@ -53,153 +47,133 @@
         pineapple: { name: 'Ananas', img: 'src/img/pineapple.png' },
         olives: { name: 'Czarne oliwki', img: 'src/img/olives.png' },
         jalapeno: { name: 'Jalapeno', img: 'src/img/jalapeno.png' },
-        chickenKebab: { name: 'Kebab z kurczaka', img: 'src/img/chicken_kebab.png' },
         oregano: { name: 'Oregano', img: 'src/img/oregano.png' },
         greenPepper: { name: 'Zielona papryka', img: 'src/img/greenpepper.png' },
         mushrooms: { name: 'Pieczarki', img: 'src/img/mushrooms.png' },
-        roastedChicken: { name: 'Pieczony kurczak', img: 'src/img/roastedchicken.png' },
         cherryTomatoes: { name: 'Pomidorki koktajlowe', img: 'src/img/tomato.png' }
     };
 
-    // Konfiguracja pizzy
-    const pizzaConfig = {
-        pepperoni: localStorage.getItem("pepperoni"),
-        ham: localStorage.getItem("ham"),
-        garlic: localStorage.getItem("garlic"),
-        onion: localStorage.getItem("onion"),
-        corn: localStorage.getItem("corn"),
-        pineapple: localStorage.getItem("pineapple"),
-        olives: localStorage.getItem("olives"),
-        jalapeno: localStorage.getItem("jalapeno"),
-        chickenKebab: 0,
-        oregano: localStorage.getItem("oregano"),
-        greenPepper: localStorage.getItem("greenpepper"),
-        mushrooms: localStorage.getItem("mushrooms"),
-        roastedChicken: localStorage.getItem("roastedchicken"),
-        cherryTomatoes: localStorage.getItem("tomato")
-    };
+    const canvas = document.getElementById('pepperoniPizzaCanvas');
+    const ctx = canvas.getContext('2d');
 
-    // Ładowanie obrazka
-    function loadImage(src) {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve(img);
-            img.onerror = reject;
-            img.src = src;
-        });
+    // 1) Bazowe ilości z localStorage:
+    const baseConfig = {};
+    // 2) Dodatkowe, od zera:
+    const extraConfig = {};
+    for (const key in ingredients) {
+        baseConfig[key] = parseInt(localStorage.getItem(key)) || 0;
+        extraConfig[key] = 0;
     }
 
-    // Generowanie pozycji składników
-    function generatePositions(count, minRadius = 50, maxRadius = 160, minDistance = 30) {
-        const positions = [];
-        const center = { x: 200, y: 200 };
-        
-        while (positions.length < count) {
-            const angle = Math.random() * Math.PI * 2;
-            const distance = minRadius + Math.random() * (maxRadius - minRadius);
-            
-            const x = center.x + Math.cos(angle) * distance;
-            const y = center.y + Math.sin(angle) * distance;
-            
-            let validPosition = true;
-            for (const pos of positions) {
-                const dx = pos.x - x;
-                const dy = pos.y - y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                
-                if (dist < minDistance) {
-                    validPosition = false;
-                    break;
-                }
-            }
-            
-            if (validPosition) {
-                positions.push({ 
-                    x: x, 
-                    y: y,
-                    size: 30 + Math.random() * 10 // losowy rozmiar
-                });
-            }
-        }
-        
-        return positions;
-    }
-
-    // Rysowanie podstawy pizzy (zachowane z oryginalnego kodu)
     function drawPizzaBase() {
-        // Ciasto
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.fillStyle = '#f5d742';
-        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.arc(200,200,180,0,Math.PI*2);
         ctx.fill();
-        
-        // Brzeg pizzy
         ctx.beginPath();
         ctx.strokeStyle = '#d4a42c';
         ctx.lineWidth = 15;
-        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.arc(200,200,180,0,Math.PI*2);
         ctx.stroke();
-    }
-
-    // Rysowanie sosu pomidorowego (zachowane z oryginalnego kodu)
-    function drawTomatoSauce() {
         ctx.beginPath();
         ctx.fillStyle = '#d62828';
-        ctx.arc(200, 200, 165, 0, Math.PI * 2);
+        ctx.arc(200,200,165,0,Math.PI*2);
         ctx.fill();
-    }
-
-    // Rysowanie sera (zachowane z oryginalnego kodu)
-    function drawCheese() {
         ctx.beginPath();
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.4)';
-        ctx.arc(200, 200, 160, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,0,0.4)';
+        ctx.arc(200,200,160,0,Math.PI*2);
         ctx.fill();
     }
 
-    // Rysowanie składników z obrazków
-    async function drawIngredients() {
-        for (const [ingredient, count] of Object.entries(pizzaConfig)) {
-            if (count > 0 && ingredients[ingredient]) {
-                try {
-                    const img = await loadImage(ingredients[ingredient].img);
-                    const positions = generatePositions(count);
-                    
-                    positions.forEach(pos => {
-                        const size = pos.size;
-                        ctx.drawImage(img, pos.x - size/2, pos.y - size/2, size, size);
-                    });
-                } catch (error) {
-                    console.error(`Błąd ładowania obrazka dla ${ingredient}:`, error);
-                }
-            }
-        }
-    }
-
-    // Rysowanie linii cięcia (zachowane z oryginalnego kodu)
     function drawSlices() {
         ctx.beginPath();
         ctx.strokeStyle = '#000';
         ctx.lineWidth = 1;
-        for(let i = 0; i < 8; i++) {
-            const angle = (i * Math.PI / 4);
-            ctx.moveTo(200, 200);
-            ctx.lineTo(200 + Math.cos(angle) * 180, 200 + Math.sin(angle) * 180);
+        for (let i = 0; i < 8; i++) {
+            const a = i * Math.PI / 4;
+            ctx.moveTo(200,200);
+            ctx.lineTo(200 + Math.cos(a)*180, 200 + Math.sin(a)*180);
         }
         ctx.stroke();
     }
 
-    // Główna funkcja rysująca pizzę
+    function generatePositions(count, minR=50, maxR=160, minD=30) {
+        const pos = [], c={x:200,y:200};
+        while(pos.length < count) {
+            const a = Math.random()*Math.PI*2;
+            const d = minR + Math.random()*(maxR-minR);
+            const x = c.x + Math.cos(a)*d,
+                  y = c.y + Math.sin(a)*d;
+            if (!pos.some(p=>Math.hypot(p.x-x,p.y-y)<minD)) {
+                pos.push({x,y,size:30+Math.random()*10});
+            }
+        }
+        return pos;
+    }
+
+    function loadImage(src) {
+        return new Promise((res,rej)=>{
+            const i=new Image();
+            i.onload=()=>res(i);
+            i.onerror=rej;
+            i.src=src;
+        });
+    }
+
+    async function drawIngredients() {
+        for (const key in ingredients) {
+            const total = baseConfig[key] + extraConfig[key];
+            if (total > 0) {
+                const img = await loadImage(ingredients[key].img);
+                const positions = generatePositions(total);
+                positions.forEach(p=>{
+                    ctx.drawImage(img, p.x-p.size/2, p.y-p.size/2, p.size, p.size);
+                });
+            }
+        }
+    }
+
     async function drawPizza() {
         drawPizzaBase();
-        drawTomatoSauce();
-        drawCheese();
         await drawIngredients();
         drawSlices();
     }
 
-    drawPizza();
-});
-    </script>
+    function setupIngredientPanel() {
+        const list = document.getElementById('ingredientList');
+        for (const key in ingredients) {
+            const item = document.createElement('div');
+            item.className = 'ingredient-item';
+            item.innerHTML = `
+                <span>${ingredients[key].name}</span>
+                <button data-key="${key}" data-action="-">−</button>
+                <span id="count-${key}">0</span>
+                <button data-key="${key}" data-action="+">+</button>
+            `;
+            list.appendChild(item);
+        }
+
+        list.addEventListener('click', e => {
+            if (e.target.tagName === 'BUTTON') {
+                const key = e.target.dataset.key;
+                const act = e.target.dataset.action;
+                if (act === '+' ) {
+                    extraConfig[key]++;
+                } else if (act === '-' && extraConfig[key] > 0) {
+                    extraConfig[key]--;
+                }
+                document.getElementById(`count-${key}`).innerText = extraConfig[key];
+                drawPizza();
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        setupIngredientPanel();
+        drawPizza();
+    });
+</script>
+
 </body>
 </html>
