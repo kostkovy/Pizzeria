@@ -17,6 +17,18 @@ header {
     padding: 0 20px;
 }
 
+.background-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* szerokość kontenera */
+  height: 400px; /* wysokość kontenera */
+  background-image: url('src/img/background.webp');
+  background-size: cover; /* dopasowuje obraz do rozmiaru diva */
+  background-position: center; /* wyśrodkowuje obraz */
+  background-repeat: no-repeat; /* zapobiega powtarzaniu obrazu */
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -63,10 +75,10 @@ header {
 
 #intro
 {
-    margin-top: 5%;
-display: flex;
-justify-content: center;
-font-size: 3vh;
+font-size: 3em;
+color: white;
+text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
 
 .open-sans-font
