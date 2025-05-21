@@ -33,11 +33,93 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+     document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('pepperoniPizzaCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Rysowanie podstawy pizzy
+    // Lista składników z obrazkami
+    const ingredients = {
+        pepperoni: { name: 'Pepperoni', img: 'src/img/peperoni.png' },
+        ham: { name: 'Szynka', img: 'src/img/ingredients/ham.png' },
+        garlic: { name: 'Czosnek', img: 'src/img/ingredients/garlic.png' },
+        onion: { name: 'Cebula', img: 'src/img/ingredients/onion.png' },
+        corn: { name: 'Kukurydza', img: 'src/img/ingredients/corn.png' },
+        pineapple: { name: 'Ananas', img: 'src/img/ingredients/pineapple.png' },
+        olives: { name: 'Czarne oliwki', img: 'src/img/ingredients/olives.png' },
+        jalapeno: { name: 'Jalapeno', img: 'src/img/ingredients/jalapeno.png' },
+        chickenKebab: { name: 'Kebab z kurczaka', img: 'src/img/ingredients/chicken_kebab.png' },
+        oregano: { name: 'Oregano', img: 'src/img/ingredients/oregano.png' },
+        greenPepper: { name: 'Zielona papryka', img: 'src/img/ingredients/green_pepper.png' },
+        mushrooms: { name: 'Pieczarki', img: 'src/img/ingredients/mushrooms.png' },
+        roastedChicken: { name: 'Pieczony kurczak', img: 'src/img/ingredients/roasted_chicken.png' },
+        cherryTomatoes: { name: 'Pomidorki koktajlowe', img: 'src/img/ingredients/cherry_tomatoes.png' }
+    };
+
+    // Konfiguracja pizzy
+    const pizzaConfig = {
+        pepperoni: localStorage.getItem("peperoni"),
+        ham: 0,
+        garlic: 0,
+        onion: 0,
+        corn: 0,
+        pineapple: 0,
+        olives: 0,
+        jalapeno: 0,
+        chickenKebab: 0,
+        oregano: 0,
+        greenPepper: 0,
+        mushrooms: 0,
+        roastedChicken: 0,
+        cherryTomatoes: 0
+    };
+
+    // Ładowanie obrazka
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+            img.src = src;
+        });
+    }
+
+    // Generowanie pozycji składników
+    function generatePositions(count, minRadius = 50, maxRadius = 160, minDistance = 30) {
+        const positions = [];
+        const center = { x: 200, y: 200 };
+        
+        while (positions.length < count) {
+            const angle = Math.random() * Math.PI * 2;
+            const distance = minRadius + Math.random() * (maxRadius - minRadius);
+            
+            const x = center.x + Math.cos(angle) * distance;
+            const y = center.y + Math.sin(angle) * distance;
+            
+            let validPosition = true;
+            for (const pos of positions) {
+                const dx = pos.x - x;
+                const dy = pos.y - y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < minDistance) {
+                    validPosition = false;
+                    break;
+                }
+            }
+            
+            if (validPosition) {
+                positions.push({ 
+                    x: x, 
+                    y: y,
+                    size: 20 + Math.random() * 10 // losowy rozmiar
+                });
+            }
+        }
+        
+        return positions;
+    }
+
+    // Rysowanie podstawy pizzy (zachowane z oryginalnego kodu)
     function drawPizzaBase() {
         // Ciasto
         ctx.beginPath();
@@ -53,7 +135,7 @@
         ctx.stroke();
     }
 
-    // Rysowanie sosu pomidorowego
+    // Rysowanie sosu pomidorowego (zachowane z oryginalnego kodu)
     function drawTomatoSauce() {
         ctx.beginPath();
         ctx.fillStyle = '#d62828';
@@ -61,7 +143,7 @@
         ctx.fill();
     }
 
-    // Rysowanie sera
+    // Rysowanie sera (zachowane z oryginalnego kodu)
     function drawCheese() {
         ctx.beginPath();
         ctx.fillStyle = 'rgba(255, 255, 0, 0.4)';
@@ -69,55 +151,30 @@
         ctx.fill();
     }
 
-    // Rysowanie pepperoni
-    function drawPepperoni() {
-        const pepperoniPositions = [
-            {x: 150, y: 150, r: 25},
-            {x: 250, y: 150, r: 20},
-            {x: 200, y: 200, r: 22},
-            {x: 130, y: 220, r: 18},
-            {x: 270, y: 220, r: 20},
-            {x: 180, y: 250, r: 19},
-            {x: 220, y: 250, r: 21},
-            {x: 150, y: 280, r: 17},
-            {x: 250, y: 280, r: 23}
-        ];
-
-        pepperoniPositions.forEach(pos => {
-            // Pepperoni
-            ctx.beginPath();
-            ctx.fillStyle = '#c1121f';
-            ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
-            ctx.fill();
-            
-            // Brzeg pepperoni
-            ctx.beginPath();
-            ctx.strokeStyle = '#780000';
-            ctx.lineWidth = 2;
-            ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
-            ctx.stroke();
-            
-            // Efekt tłuszczu na pepperoni
-            for(let i = 0; i < 3; i++) {
-                const oilX = pos.x + (Math.random() * 10 - 5);
-                const oilY = pos.y + (Math.random() * 10 - 5);
-                const oilR = Math.random() * 3 + 1;
-                
-                ctx.beginPath();
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-                ctx.arc(oilX, oilY, oilR, 0, Math.PI * 2);
-                ctx.fill();
+    // Rysowanie składników z obrazków
+    async function drawIngredients() {
+        for (const [ingredient, count] of Object.entries(pizzaConfig)) {
+            if (count > 0 && ingredients[ingredient]) {
+                try {
+                    const img = await loadImage(ingredients[ingredient].img);
+                    const positions = generatePositions(count);
+                    
+                    positions.forEach(pos => {
+                        const size = pos.size;
+                        ctx.drawImage(img, pos.x - size/2, pos.y - size/2, size, size);
+                    });
+                } catch (error) {
+                    console.error(`Błąd ładowania obrazka dla ${ingredient}:`, error);
+                }
             }
-        });
+        }
     }
 
-    // Rysowanie plasterków (linii cięcia)
+    // Rysowanie linii cięcia (zachowane z oryginalnego kodu)
     function drawSlices() {
         ctx.beginPath();
         ctx.strokeStyle = '#000';
-        ctx.lineWidth = 3;
-        
-        // Linie cięcia
+        ctx.lineWidth = 1;
         for(let i = 0; i < 8; i++) {
             const angle = (i * Math.PI / 4);
             ctx.moveTo(200, 200);
@@ -126,12 +183,12 @@
         ctx.stroke();
     }
 
-    // Rysowanie całej pizzy
-    function drawPizza() {
+    // Główna funkcja rysująca pizzę
+    async function drawPizza() {
         drawPizzaBase();
         drawTomatoSauce();
         drawCheese();
-        drawPepperoni();
+        await drawIngredients();
         drawSlices();
     }
 
