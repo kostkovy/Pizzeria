@@ -5,7 +5,6 @@ background-color: rgb(236, 236, 236);
 color: rgb(255, 255, 255);
 }
 
-<<<<<<< HEAD
 header {
     display: flex;
     justify-content: space-between;
@@ -38,22 +37,6 @@ header {
 }
 
 .menu-links a {
-=======
-header
-{
-display: flex;
-justify-content: left;
-align-items: baseline;
-font-family: 'Open Sans', sans-serif;
-font-size: 3vh;
-height: 9vh;
-background-color: rgb(151, 18, 18);
-border-bottom: 5px black solid;
-}
-
-a
-{
->>>>>>> 28e15b119a895fbd287001bf16bbd946bf28df95
     color: aliceblue;
     text-decoration: none;
     padding: 5px 10px;
@@ -67,7 +50,6 @@ a
     color: white;
 }
 
-<<<<<<< HEAD
 /* Menu styles */
 .menu-container {
     padding: 20px 5%;
@@ -77,14 +59,6 @@ a
     text-align: center;
     color: rgb(151, 18, 18);
     margin-bottom: 30px;
-=======
-#logo
-{
-border: 1px solid black;
-margin-right: 5%;
-margin-left: 5%;
-color: aliceblue;
->>>>>>> 28e15b119a895fbd287001bf16bbd946bf28df95
 }
 
 #intro
