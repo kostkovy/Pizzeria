@@ -10,13 +10,12 @@ header
 display: flex;
 justify-content: left;
 align-items: baseline;
-font-family: 'Open Sans', sans-serif; 
+font-family: 'Open Sans', sans-serif;
 font-size: 3vh;
 height: 9vh;
 background-color: rgb(151, 18, 18);
 border-bottom: 5px black solid;
 }
-
 
 a
 {
@@ -36,8 +35,6 @@ border: 1px solid black;
 margin-right: 5%;
 margin-left: 5%;
 color: aliceblue;
-
-
 }
 
 #intro
@@ -48,7 +45,7 @@ justify-content: center;
 font-size: 3vh;
 }
 
-.open-sans-font 
+.open-sans-font
 {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
@@ -58,42 +55,65 @@ font-size: 3vh;
     "width" 100;
 }
 
- .wiersz {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        .pizza {
-            width: 16%; /* 6 pizz (100%/6 ≈ 16.66%) - trochę mniej aby zmieścić marginesy */
-            box-sizing: border-box;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .pizza img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .napisy {
-            margin-top: 8px;
-            color: red;
-            font-weight: bold;
-            font-family: 'Open Sans', sans-serif;
-        }
-        .zamow-btn {
-            background-color: #ff5722;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 8px;
-            width: 100%;
-        }
-        .zamow-btn:hover {
-            background-color: #e64a19;
-        }
+.wiersz {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Odstępy między elementami */
+    margin: 20px auto;
+    flex-wrap: wrap; /* Pozwala elementom przenosić się do nowej linii */
+    max-width: 1300px; /* Zwiększona szerokość maksymalna kontenera, aby zmieścić 6 pizz z odstępami */
+    padding: 0 10px;
+}
+
+.pizza {
+    /* To jest kluczowa zmiana dla 6 pizz w rzędzie: */
+    flex: 0 1 calc(16.66% - 20px); /* flex-grow: 0 (nie rośnie ponad szerokość bazową), flex-shrink: 1, flex-basis: ok. 1/6 szerokości minus odstęp */
+    min-width: 150px; /* Minimalna szerokość, żeby pizze nie były za małe na bardzo wąskich ekranach */
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out;
+    color: black;
+}
+
+.pizza:hover {
+    transform: translateY(-5px);
+}
+
+.pizza img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.napisy {
+    margin-top: 8px;
+    color: red;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.zamow-btn {
+    background-color: rgb(151, 18, 18);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 8px;
+    width: 100%;
+    border: 1px solid rgb(151, 18, 18);
+}
+
+.zamow-btn:hover {
+    background-color: #e64a19;
+    border: 1px solid #e64a19;
+}

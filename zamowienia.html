@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="PL-pl">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Pizzeria Podpłomień! Najlepsza pizza w internecie!</title>
+    <link rel="icon" type="image/x-icon" href="src/favicon.ico">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <header>
+        <div id="logo">Pizzera Podpłomień
+        <img src="src/img/logo.png" height="50px" width="50px" alt="pizza_photo">
+        </div>
+        <div id="logo"><a href="menu.html">Menu</a></div>
+        <div id="logo"><a href="stworz.html">Dark Mode</a></div>
+    </header>
+
+    <div class="wiersz">
+        </div>
+
+    <article id="intro">
+        Witamy w pizzeri.
+    </article>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Twoja Pepperoni Pizza (na Canvasie!)</h2>
+        <canvas id="pepperoniPizzaCanvas" width="400" height="400" style="border: 1px solid #ccc; background-color: #f0f0f0;"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('pepperoniPizzaCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Rysowanie podstawy pizzy
+    function drawPizzaBase() {
+        // Ciasto
+        ctx.beginPath();
+        ctx.fillStyle = '#f5d742';
+        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Brzeg pizzy
+        ctx.beginPath();
+        ctx.strokeStyle = '#d4a42c';
+        ctx.lineWidth = 15;
+        ctx.arc(200, 200, 180, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+
+    // Rysowanie sosu pomidorowego
+    function drawTomatoSauce() {
+        ctx.beginPath();
+        ctx.fillStyle = '#d62828';
+        ctx.arc(200, 200, 165, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // Rysowanie sera
+    function drawCheese() {
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255, 255, 0, 0.4)';
+        ctx.arc(200, 200, 160, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // Rysowanie pepperoni
+    function drawPepperoni() {
+        const pepperoniPositions = [
+            {x: 150, y: 150, r: 25},
+            {x: 250, y: 150, r: 20},
+            {x: 200, y: 200, r: 22},
+            {x: 130, y: 220, r: 18},
+            {x: 270, y: 220, r: 20},
+            {x: 180, y: 250, r: 19},
+            {x: 220, y: 250, r: 21},
+            {x: 150, y: 280, r: 17},
+            {x: 250, y: 280, r: 23}
+        ];
+
+        pepperoniPositions.forEach(pos => {
+            // Pepperoni
+            ctx.beginPath();
+            ctx.fillStyle = '#c1121f';
+            ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Brzeg pepperoni
+            ctx.beginPath();
+            ctx.strokeStyle = '#780000';
+            ctx.lineWidth = 2;
+            ctx.arc(pos.x, pos.y, pos.r, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Efekt tłuszczu na pepperoni
+            for(let i = 0; i < 3; i++) {
+                const oilX = pos.x + (Math.random() * 10 - 5);
+                const oilY = pos.y + (Math.random() * 10 - 5);
+                const oilR = Math.random() * 3 + 1;
+                
+                ctx.beginPath();
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.arc(oilX, oilY, oilR, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        });
+    }
+
+    // Rysowanie plasterków (linii cięcia)
+    function drawSlices() {
+        ctx.beginPath();
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 3;
+        
+        // Linie cięcia
+        for(let i = 0; i < 8; i++) {
+            const angle = (i * Math.PI / 4);
+            ctx.moveTo(200, 200);
+            ctx.lineTo(200 + Math.cos(angle) * 180, 200 + Math.sin(angle) * 180);
+        }
+        ctx.stroke();
+    }
+
+    // Rysowanie całej pizzy
+    function drawPizza() {
+        drawPizzaBase();
+        drawTomatoSauce();
+        drawCheese();
+        drawPepperoni();
+        drawSlices();
+    }
+
+    drawPizza();
+});
+    </script>
+</body>
+</html>
