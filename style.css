@@ -9,17 +9,21 @@ header
 {
 display: flex;
 justify-content: left;
-align-items: center;
+align-items: baseline;
 font-family: 'Open Sans', sans-serif; 
-font-size: 4vh;
+font-size: 3vh;
+height: 9vh;
 background-color: rgb(151, 18, 18);
 border-bottom: 5px black solid;
-
 }
+
+
 a
 {
     color: aliceblue;
+    text-decoration: none;
 }
+
 a:hover
 {
     color: black;
@@ -28,10 +32,12 @@ a:hover
 
 #logo
 {
+border: 1px solid black;
 margin-right: 5%;
 margin-left: 5%;
 color: aliceblue;
-font-size: 4vh;
+
+
 }
 
 #intro
