@@ -1,8 +1,7 @@
-body
-{
-margin: 0;
-background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);
+body {
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 header {
@@ -18,15 +17,15 @@ header {
 }
 
 .background-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%; /* szerokość kontenera */
-  height: 400px; /* wysokość kontenera */
-  background-image: url('src/img/background.webp');
-  background-size: cover; /* dopasowuje obraz do rozmiaru diva */
-  background-position: center; /* wyśrodkowuje obraz */
-  background-repeat: no-repeat; /* zapobiega powtarzaniu obrazu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    background-image: url('src/img/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .logo-container {
@@ -56,55 +55,31 @@ header {
     transition: all 0.3s ease;
 }
 
-.menu-links a:hover, 
+.menu-links a:hover,
 .menu-links a.active {
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
 }
 
-/* Menu styles */
-.menu-container {
-    padding: 20px 5%;
-}
-
-.menu-container h1 {
-    text-align: center;
-    color: rgb(151, 18, 18);
-    margin-bottom: 30px;
-}
-
-#intro
-{
-font-size: 3em;
-color: white;
-text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
-}
-
-.open-sans-font
-{
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 100;
-  font-style: normal;
-  font-variation-settings:
-    "width" 100;
+#intro {
+    font-size: 3em;
+    color: white;
+    text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .wiersz {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Odstępy między elementami */
+    gap: 20px;
     margin: 20px auto;
-    flex-wrap: wrap; /* Pozwala elementom przenosić się do nowej linii */
-    max-width: 1300px; /* Zwiększona szerokość maksymalna kontenera, aby zmieścić 6 pizz z odstępami */
+    flex-wrap: wrap;
+    max-width: 1300px;
     padding: 0 10px;
 }
 
 .pizza {
-    /* To jest kluczowa zmiana dla 6 pizz w rzędzie: */
-    flex: 0 1 calc(16.66% - 20px); /* flex-grow: 0 (nie rośnie ponad szerokość bazową), flex-shrink: 1, flex-basis: ok. 1/6 szerokości minus odstęp */
-    min-width: 150px; /* Minimalna szerokość, żeby pizze nie były za małe na bardzo wąskich ekranach */
+    flex: 0 1 calc(16.66% - 20px);
+    min-width: 150px;
     box-sizing: border-box;
     text-align: center;
     border: 2px solid #ccc;
@@ -136,6 +111,12 @@ text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     margin-bottom: 10px;
 }
 
+.buttons-container {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
 .zamow-btn {
     background-color: rgb(151, 18, 18);
     color: white;
@@ -144,7 +125,6 @@ text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 8px;
     width: 100%;
     border: 1px solid rgb(151, 18, 18);
 }
@@ -153,55 +133,142 @@ text-shadow: -2px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     background-color: #e64a19;
     border: 1px solid #e64a19;
 }
+
+.info-btn {
+    background-color: #f0f0f0;
+    color: rgb(151, 18, 18);
+    border: 1px solid rgb(151, 18, 18);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.info-btn:hover {
+    background-color: #ddd;
+}
+
+.pizza-info {
+    flex: 0 1 calc(16.66% - 20px);
+    min-width: 150px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+    display: none;
+}
+
+.info-title {
+    font-size: 1.2em;
+    color: rgb(151, 18, 18);
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.info-text {
+    font-size: 0.9em;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.back-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.back-btn:hover {
+    background-color: #555;
+}
+
+/* --- Nowe style dla pizza-builder-container i panelu składników --- */
+
 .pizza-builder-container {
     display: flex;
-    gap: 30px;
+    gap: 40px;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
     justify-content: center;
-    align-items: flex-start;
-    padding: 40px 20px;
-    flex-wrap: wrap;
-    background-color: #fff;
 }
 
 .pizza-canvas {
-    text-align: center;
-    max-width: 420px;
     flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ingredient-panel {
-    border-left: 3px solid rgb(151, 18, 18);
-    padding-left: 30px;
-    max-width: 400px;
-    flex: 1 1 300px;
+    flex: 0 0 300px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-family: 'Open Sans', sans-serif;
 }
 
 .ingredient-panel h3 {
-    color: rgb(151, 18, 18);
+    margin-top: 0;
     margin-bottom: 15px;
+    color: rgb(151, 18, 18);
+    font-weight: 600;
+    text-align: center;
+}
+
+#ingredientList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .ingredient-item {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    align-items: center;
+    font-weight: 600;
+    color: #333;
+}
+
+.ingredient-item span:first-child {
+    flex: 1;
 }
 
 .ingredient-item button {
-    padding: 4px 10px;
-    font-size: 16px;
-    cursor: pointer;
     background-color: rgb(151, 18, 18);
-    color: white;
     border: none;
+    color: white;
+    font-size: 1.2em;
+    width: 30px;
+    height: 30px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
 }
 
 .ingredient-item button:hover {
     background-color: #e64a19;
+}
+
+.ingredient-item span[id^="count-"] {
+    width: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0 8px;
+    user-select: none;
+    color: black;
 }

@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-
     <script src='script.js'></script>
 </head>
 <body>
@@ -22,77 +21,207 @@
             </div>
             <nav class="menu-links">
                 <a href="index.html">Strona główna</a>
-                <a href="menu.html" class="active" >Menu</a>
+                <a href="menu.html" class="active">Menu</a>
                 <a href="#" id="dark-mode-toggle">Dark Mode</a>
             </nav>
         </div>
     </header>
     <div class="background-image">
-
-    <div id="intro">
-        Witamy w pizzeri.
-    </div>
+        <div id="intro">
+            Witamy w pizzeri.
+        </div>
     </div>
     <div class="wiersz">
-        <div class="pizza">
+        <!-- Margherita -->
+        <div class="pizza" id="pizza-Margherita">
             <p class="napisy">Margherita</p>
-            <img src="src/img/test.jpeg.png" alt="Margherita">
-            <button class="zamow-btn" onclick="zamow('Margherita')">Zamów</button>
+            <img src="src/img/margarita.png" alt="Margherita">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Margherita',23)">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Margherita')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Margherita" style="display: none;">
+            <p class="info-title">Margherita</p>
+            <p class="info-text">Klasyczna włoska pizza z sosem pomidorowym, mozzarellą i bazylią. Prosta, ale pełna smaku.</p>
+            <p class="info-text">Cena 23zł"</p>
+            <button class="back-btn" onclick="hideInfo('Margherita')">Wróć</button>
+        </div>
+
+        <!-- Pepperoni -->
+        <div class="pizza" id="pizza-Pepperoni">
             <p class="napisy">Pepperoni</p>
-            <img src="src/img/test.jpeg.png" alt="Pepperoni">
-            <button class="zamow-btn" onclick="zamow('Pepperoni')">Zamów</button>
+            <img src="src/img/peperoni1.png" alt="Pepperoni">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Pepperoni',30)">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Pepperoni')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Pepperoni" style="display: none;">
+            <p class="info-title">Pepperoni</p>
+            <p class="info-text">Pikantna pizza z salami pepperoni, sosem pomidorowym i podwójną porcją sera.</p>
+            <p class="info-text">Cena 30zł"</p>
+            <button class="back-btn" onclick="hideInfo('Pepperoni')">Wróć</button>
+        </div>
+
+        <!-- Wegetariańska -->
+        <div class="pizza" id="pizza-Wegetarianska">
             <p class="napisy">Wegetariańska</p>
-            <img src="src/img/test.jpeg.png" alt="Wegetariańska">
-            <button class="zamow-btn" onclick="zamow('Wegetarianska')">Zamów</button>
+            <img src="src/img/wege.png" alt="Wegetariańska">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Wegetarianska',28)">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Wegetarianska')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Wegetarianska" style="display: none;">
+            <p class="info-title">Wegetariańska</p>
+            <p class="info-text">Pizza pełna świeżych warzyw: pieczarki, papryka, cebula, pomidory i oliwki.</p>
+            <p class="info-text">Cena 28zł"</p>
+            <button class="back-btn" onclick="hideInfo('Wegetarianska')">Wróć</button>
+        </div>
+
+        <!-- Capricciosa -->
+        <div class="pizza" id="pizza-Capricciosa">
             <p class="napisy">Capricciosa</p>
-            <img src="src/img/test.jpeg.png" alt="Capricciosa">
-            <button class="zamow-btn" onclick="zamow('Capricciosa')">Zamów</button>
+            <img src="src/img/capricciosa.png" alt="Capricciosa">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Capricciosa')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Capricciosa')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Capricciosa" style="display: none;">
+            <p class="info-title">Capricciosa</p>
+            <p class="info-text">Klasyczna kompozycja szynki, pieczarek i oliwek na puszystym cieście.</p>
+            <p class="info-text">Cena 35zł"</p>
+            <button class="back-btn" onclick="hideInfo('Capricciosa')">Wróć</button>
+        </div>
+
+        <!-- Hawajska -->
+        <div class="pizza" id="pizza-Hawajska">
             <p class="napisy">Hawajska</p>
-            <img src="src/img/test.jpeg.png" alt="Hawajska">
-            <button class="zamow-btn" onclick="zamow('Hawajska')">Zamów</button>
+            <img src="src/img/hawajska.png" alt="Hawajska">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Hawajska')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Hawajska')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Hawajska" style="display: none;">
+            <p class="info-title">Hawajska</p>
+            <p class="info-text">Połączenie szynki i ananasa, które budzi emocje, ale smakuje wybornie.</p>
+            <p class="info-text">Cena 32zł"</p>
+            <button class="back-btn" onclick="hideInfo('Hawajska')">Wróć</button>
+        </div>
+
+        <!-- Quattro Formaggi -->
+        <div class="pizza" id="pizza-QuattroFormaggi">
             <p class="napisy">Quattro Formaggi</p>
-            <img src="src/img/test.jpeg.png" alt="Quattro Formaggi">
-            <button class="zamow-btn" onclick="zamow('Quattro Formaggi')">Zamów</button>
+            <img src="src/img/formaggi.png" alt="Quattro Formaggi">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Quattro Formaggi')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('QuattroFormaggi')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-QuattroFormaggi" style="display: none;">
+            <p class="info-title">Quattro Formaggi</p>
+            <p class="info-text">Cztery rodzaje sera: mozzarella, gorgonzola, parmezan i fontina w jednej pizzy.</p>
+            <p class="info-text">Cena 40zł"</p>
+            <button class="back-btn" onclick="hideInfo('QuattroFormaggi')">Wróć</button>
+        </div>
+
+        <!-- Farmerska -->
+        <div class="pizza" id="pizza-Farmerska">
             <p class="napisy">Farmerska</p>
-            <img src="src/img/test.jpeg.png" alt="Farmerska">
-            <button class="zamow-btn" onclick="zamow('Farmerska')">Zamów</button>
+            <img src="src/img/farmerska.png" alt="Farmerska">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Farmerska')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Farmerska')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Farmerska" style="display: none;">
+            <p class="info-title">Farmerska</p>
+            <p class="info-text">Pizza z szynką, cebulą, papryką i kukurydzą - jak obiad na wsi.</p>
+            <p class="info-text">Cena 39zł"</p>
+            <button class="back-btn" onclick="hideInfo('Farmerska')">Wróć</button>
+        </div>
+
+        <!-- Mexicana -->
+        <div class="pizza" id="pizza-Mexicana">
             <p class="napisy">Mexicana</p>
-            <img src="src/img/test.jpeg.png" alt="Mexicana">
-            <button class="zamow-btn" onclick="zamow('Mexicana')">Zamów</button>
+            <img src="src/img/mexicano.png" alt="Mexicana">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Mexicana')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Mexicana')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Mexicana" style="display: none;">
+            <p class="info-title">Mexicana</p>
+            <p class="info-text">Pikantna pizza z pepperoni, jalapeño, cebulą i kukurydzą - dla miłośników ostrych smaków.</p>
+            <p class="info-text">Cena 37zł"</p>
+            <button class="back-btn" onclick="hideInfo('Mexicana')">Wróć</button>
+        </div>
+
+        <!-- Diablo -->
+        <div class="pizza" id="pizza-Diablo">
             <p class="napisy">Diablo</p>
-            <img src="src/img/test.jpeg.png" alt="Diablo">
-            <button class="zamow-btn" onclick="zamow('Diablo')">Zamów</button>
+            <img src="src/img/diablo.png" alt="Diablo">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Diablo')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Diablo')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Diablo" style="display: none;">
+            <p class="info-title">Diablo</p>
+            <p class="info-text">Dla prawdziwych śmiałków - podwójna porcja pepperoni, jalapeño i czosnku.</p>
+            <p class="info-text">Cena 36zł"</p>
+            <button class="back-btn" onclick="hideInfo('Diablo')">Wróć</button>
+        </div>
+
+        <!-- Prosciutto -->
+        <div class="pizza" id="pizza-Prosciutto">
             <p class="napisy">Prosciutto</p>
-            <img src="src/img/test.jpeg.png" alt="Prosciutto">
-            <button class="zamow-btn" onclick="zamow('Prosciutto')">Zamów</button>
+            <img src="src/img/prosciutto.png" alt="Prosciutto">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Prosciutto')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Prosciutto')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Prosciutto" style="display: none;">
+            <p class="info-title">Prosciutto</p>
+            <p class="info-text">Delikatna pizza z szynką parmeńską, pieczarkami i czosnkiem.</p>
+            <p class="info-text">Cena 32zł"</p>
+            <button class="back-btn" onclick="hideInfo('Prosciutto')">Wróć</button>
+        </div>
+
+        <!-- Tropical -->
+        <div class="pizza" id="pizza-Tropical">
             <p class="napisy">Tropical</p>
-            <img src="src/img/test.jpeg.png" alt="Tropical">
-            <button class="zamow-btn" onclick="zamow('Tropical')">Zamów</button>
+            <img src="src/img/tropical.png" alt="Tropical">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Tropical')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('Tropical')">Info</button>
+            </div>
         </div>
-        <div class="pizza">
+        <div class="pizza-info" id="info-Tropical" style="display: none;">
+            <p class="info-title">Tropical</p>
+            <p class="info-text">Egzotyczne połączenie szynki, ananasa i kukurydzy.</p>
+            <p class="info-text">Cena 31zł"</p>
+            <button class="back-btn" onclick="hideInfo('Tropical')">Wróć</button>
+        </div>
+
+        <!-- Quattro Stagioni -->
+        <div class="pizza" id="pizza-QuattroStagioni">
             <p class="napisy">Quattro Stagioni</p>
-            <img src="src/img/test.jpeg.png" alt="Quattro Stagioni">
-            <button class="zamow-btn" onclick="zamow('Quattro Stagioni')">Zamów</button>
+            <img src="src/img/staggioni.png" alt="Quattro Stagioni">
+            <div class="buttons-container">
+                <button class="zamow-btn" onclick="zamow('Quattro Stagioni')">Zamów</button>
+                <button class="info-btn" onclick="showInfo('QuattroStagioni')">Info</button>
+            </div>
+        </div>
+        <div class="pizza-info" id="info-QuattroStagioni" style="display: none;">
+            <p class="info-title">Quattro Stagioni</p>
+            <p class="info-text">Pizza czterech pór roku: szynka, pieczarki, oliwki i pomidory w czterech ćwiartkach.</p>
+            <p class="info-text">Cena 33zł"</p>
+            <button class="back-btn" onclick="hideInfo('QuattroStagioni')">Wróć</button>
         </div>
     </div>
 </body>
