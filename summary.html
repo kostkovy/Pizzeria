@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Podsumowanie zamówienia | Pizzeria Podpłomień</title>
+    <link rel="icon" type="image/x-icon" href="src/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .thank-you-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid var(--card-border);
+        }
+
+        .thank-you-icon {
+            font-size: 100px;
+            color: rgb(151, 18, 18);
+            margin-bottom: 20px;
+        }
+
+        .thank-you-title {
+            font-size: 2.5em;
+            color: rgb(151, 18, 18);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .thank-you-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .order-details {
+            background-color: rgba(151, 18, 18, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid rgb(151, 18, 18);
+        }
+
+        .back-to-menu {
+            display: inline-block;
+            background-color: rgb(151, 18, 18);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: 2px solid rgb(151, 18, 18);
+        }
+
+        .back-to-menu:hover {
+            background-color: #e64a19;
+            border-color: #e64a19;
+            transform: translateY(-3px);
+        }
+
+        .delivery-time {
+            font-size: 1.5em;
+            color: rgb(151, 18, 18);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                Pizzeria Podpłomień
+                <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
+            </div>
+            <nav class="menu-links">
+                <a href="index.html">Strona główna</a>
+                <a href="menu.html">Menu</a>
+                <a href="#" id="dark-mode-toggle">Dark Mode</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="thank-you-container">
+        <div class="thank-you-icon">🍕</div>
+        <h1 class="thank-you-title">Dziękujemy za Twoje zamówienie!</h1>
+        <p class="thank-you-text">
+            Twoja pizza została przyjęta do realizacji. Nasi kucharze już przygotowują Twoje ulubione składniki!
+        </p>
+
+        <div class="order-details">
+            <h2>Szczegóły zamówienia</h2>
+            <p>Numer zamówienia: <strong>#<span id="orderNumber">0000</span></strong></p>
+            <p>Data: <span id="orderDate"></span></p>
+            <p>Całkowita kwota: <strong><span id="orderPrice">0</span> zł</strong></p>
+        </div>
+
+        <div class="delivery-time">
+            Przewidywany czas dostawy: <span id="deliveryTime">45-60 minut</span>
+        </div>
+
+        <p class="thank-you-text">
+            W razie pytań dotyczących Twojego zamówienia, skontaktuj się z nami.
+        </p>
+
+        <a href="menu.html" class="back-to-menu">Wróć do menu</a>
+    </div>
+
+    <script>
+        // Generowanie losowego numeru zamówienia
+        document.getElementById('orderNumber').textContent = 
+            Math.floor(Math.random() * 9000 + 1000);
+
+        // Wyświetlanie aktualnej daty i godziny
+        const now = new Date();
+        document.getElementById('orderDate').textContent = 
+            now.toLocaleDateString('pl-PL', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+        // Pobranie ceny z localStorage
+        const price = localStorage.getItem('Cena') || 0;
+        document.getElementById('orderPrice').textContent = price;
+
+        // Losowy czas dostawy od 20 do 60 minut
+        const deliveryMinutes = Math.floor(Math.random() * (60 - 20 + 1)) + 20;
+        document.getElementById('deliveryTime').textContent = `${deliveryMinutes} minut`;
+
+        // Dark mode toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const body = document.body;
+
+            if(localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                darkModeToggle.textContent = '🌞 Tryb Jasny';
+            }
+
+            darkModeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                body.classList.toggle('dark-mode');
+
+                if(body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    this.textContent = '🌞 Tryb Jasny';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    this.textContent = '🌓 Tryb Ciemny';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
