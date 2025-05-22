@@ -11,6 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <script src='script.js'></script>
+    <style>
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        #pizzaFilter {
+            padding: 10px 15px;
+            border: 2px solid rgb(151, 18, 18);
+            border-radius: 25px;
+            font-size: 1em;
+            width: 300px;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        #pizzaFilter:focus {
+            border-color: #e64a19;
+            box-shadow: 0 0 5px rgba(151, 18, 18, 0.5);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -32,6 +55,12 @@
             Witamy w pizzeri.
         </div>
     </div>
+    
+    <!-- Dodany kontener z polem wyszukiwania -->
+    <div class="search-container">
+        <input type="text" id="pizzaFilter" placeholder="Wpisz nazwę pizzy..." onkeyup="filterPizzas()">
+    </div>
+    
     <div class="wiersz">
         <!-- Margherita -->
         <div class="pizza" id="pizza-Margherita">
@@ -86,7 +115,7 @@
             <p class="napisy">Capricciosa</p>
             <img src="src/img/capricciosa.png" alt="Capricciosa">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Capricciosa')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Capricciosa',35)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Capricciosa')">Info</button>
             </div>
         </div>
@@ -102,7 +131,7 @@
             <p class="napisy">Hawajska</p>
             <img src="src/img/hawajska.png" alt="Hawajska">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Hawajska')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Hawajska',32)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Hawajska')">Info</button>
             </div>
         </div>
@@ -118,7 +147,7 @@
             <p class="napisy">Quattro Formaggi</p>
             <img src="src/img/formaggi.png" alt="Quattro Formaggi">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Quattro Formaggi')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Quattro Formaggi',40)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('QuattroFormaggi')">Info</button>
             </div>
         </div>
@@ -134,7 +163,7 @@
             <p class="napisy">Farmerska</p>
             <img src="src/img/farmerska.png" alt="Farmerska">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Farmerska')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Farmerska',39)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Farmerska')">Info</button>
             </div>
         </div>
@@ -150,7 +179,7 @@
             <p class="napisy">Mexicana</p>
             <img src="src/img/mexicano.png" alt="Mexicana">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Mexicana')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Mexicana',37)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Mexicana')">Info</button>
             </div>
         </div>
@@ -166,7 +195,7 @@
             <p class="napisy">Diablo</p>
             <img src="src/img/diablo.png" alt="Diablo">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Diablo')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Diablo',36)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Diablo')">Info</button>
             </div>
         </div>
@@ -182,7 +211,7 @@
             <p class="napisy">Prosciutto</p>
             <img src="src/img/prosciutto.png" alt="Prosciutto">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Prosciutto')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Prosciutto',32)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Prosciutto')">Info</button>
             </div>
         </div>
@@ -198,7 +227,7 @@
             <p class="napisy">Tropical</p>
             <img src="src/img/tropical.png" alt="Tropical">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Tropical')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Tropical',31)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('Tropical')">Info</button>
             </div>
         </div>
@@ -214,7 +243,7 @@
             <p class="napisy">Quattro Stagioni</p>
             <img src="src/img/staggioni.png" alt="Quattro Stagioni">
             <div class="buttons-container">
-                <button class="zamow-btn" onclick="zamow('Quattro Stagioni')">Zamów</button>
+                <button class="zamow-btn" onclick="zamow('Quattro Stagioni',33)">Zamów</button>
                 <button class="info-btn" onclick="showInfo('QuattroStagioni')">Info</button>
             </div>
         </div>
@@ -225,5 +254,23 @@
             <button class="back-btn" onclick="hideInfo('QuattroStagioni')">Wróć</button>
         </div>
     </div>
+
+    <script>
+        // Funkcja do filtrowania pizz
+        function filterPizzas() {
+            const input = document.getElementById('pizzaFilter');
+            const filter = input.value.toUpperCase();
+            const pizzas = document.querySelectorAll('.pizza');
+            
+            pizzas.forEach(pizza => {
+                const name = pizza.querySelector('.napisy').textContent.toUpperCase();
+                if (name.includes(filter)) {
+                    pizza.style.display = 'block';
+                } else {
+                    pizza.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
