@@ -2,6 +2,10 @@ body {
     margin: 0;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
 }
 
 header {
@@ -26,6 +30,25 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+article
+{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+footer
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1vh;
+    height: 6vh;
+    background-color: rgb(151, 18, 18);
+    padding: 0 20px;
 }
 
 .logo-container {
@@ -271,4 +294,55 @@ header {
     margin: 0 8px;
     user-select: none;
     color: black;
+}
+
+
+/* Dodaj na początku pliku CSS */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --header-bg: #971212;
+  --header-border: #000000;
+  --card-bg: #ffffff;
+  --card-border: #cccccc;
+}
+
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --header-bg: #000000;
+  --header-border: #222121;
+  --card-bg: #2d2d2d;
+  --card-border: #404040;
+}
+
+/* Zmodyfikuj istniejące style używając zmiennych */
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  /* ... reszta istniejących styli ... */
+}
+
+header {
+  background-color: var(--header-bg);
+  border-bottom-color: var(--header-border);
+}
+
+footer {
+  background-color: var(--header-bg);
+}
+
+.pizza {
+  border-color: var(--card-border);
+  background-color: var(--card-bg);
+}
+
+.info-btn {
+  background-color: var(--bg-color);
+}
+
+/* Dodaj płynne przejścia */
+body, .pizza, button {
+  transition: all 0.3s ease-in-out;
 }

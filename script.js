@@ -111,3 +111,27 @@ function hideInfo(pizzaName) {
     document.getElementById(`info-${pizzaName}`).style.display = 'none';
     document.getElementById(`pizza-${pizzaName}`).style.display = 'block';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const body = document.body;
+
+  // Sprawdź localStorage
+  if(localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark-mode');
+    darkModeToggle.textContent = '🌞 Tryb Jasny';
+  }
+
+  darkModeToggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    body.classList.toggle('dark-mode');
+    
+    if(body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      this.textContent = '🌞 Tryb Jasny';
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      this.textContent = '🌓 Tryb Ciemny';
+    }
+  });
+});
