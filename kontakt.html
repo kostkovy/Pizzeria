@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Pizzeria Podpłomień! Najlepsza pizza w internecie!</title>
+    <title>Kontakt | Pizzeria Podpłomień</title>
     <link rel="icon" type="image/x-icon" href="src/favicon.ico">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
@@ -22,21 +22,101 @@
             <nav class="menu-links">
                 <a href="index.html">Strona główna</a>
                 <a href="menu.html">Menu</a>
-                <a href="kontakt.html"class="active">Kontakt</a>
+                <a href="kontakt.html" class="active">Kontakt</a>
                 <a href="#" id="dark-mode-toggle">Dark Mode</a>
             </nav>
         </div>
     </header>
 
-
     <div class="background-image">
-
-    <div id="intro">
-        Witamy w pizzeri.
+        <div id="intro">
+            Skontaktuj się z nami!
+        </div>
     </div>
 
-
+    <div class="contact-container">
+        <h1 class="contact-title">Formularz kontaktowy</h1>
+        
+        <div id="successMessage" class="success-message">
+            Dziękujemy za wiadomość! Odezwiemy się wkrótce.
+        </div>
+        
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Imię i nazwisko</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Telefon (opcjonalnie)</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Temat</label>
+                <select id="subject" name="subject" required>
+                    <option value="" disabled selected>Wybierz temat</option>
+                    <option value="zamowienie">Zamówienie</option>
+                    <option value="reklamacja">Reklamacja</option>
+                    <option value="wspolpraca">Współpraca</option>
+                    <option value="inne">Inne</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Wiadomość</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Wyślij wiadomość</button>
+        </form>
+        
+        <div class="contact-info">
+            <div class="info-box">
+                <h3>Adres</h3>
+                <p>Białystok, Ul. Lipowa 18</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Godziny otwarcia</h3>
+                <p>Pon-Pt: 10:00-22:00</p>
+                <p>Sob-Nd: 11:00-23:00</p>
+            </div>
+            
+            <div class="info-box">
+                <h3>Telefon</h3>
+                <p>999 999 999</p>
+                <p>email: kontakt@pizzeriapodplomien.pl</p>
+            </div>
+        </div>
     </div>
 
+    <footer>
+        <nav class="menu-links">
+            <div>Białystok. Ul.Lipowa 18</div>
+            <div>Nr. tel 999 999 999</div>
+            <div>Made by Maciej Socik and Mikołaj Staniaszek</div>
+        </nav>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Tutaj normalnie byłoby wysyłanie formularza, ale dla demonstracji tylko pokazujemy komunikat
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+            
+            // Ukryj komunikat po 5 sekundach
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    </script>
 </body>
 </html>

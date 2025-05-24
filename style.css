@@ -402,3 +402,117 @@ footer {
 body, .pizza, button {
   transition: all 0.3s ease-in-out;
 }
+
+/* ... (pozostaw cały istniejący CSS bez zmian) ... */
+
+/* Dodaj na końcu pliku nowe style dla formularza kontaktowego */
+.contact-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid var(--card-border);
+}
+
+.contact-title {
+    font-size: 2em;
+    color: rgb(151, 18, 18);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: rgb(151, 18, 18);
+    outline: none;
+    box-shadow: 0 0 5px rgba(151, 18, 18, 0.5);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: rgb(151, 18, 18);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #e64a19;
+    transform: translateY(-2px);
+}
+
+.contact-info {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.info-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    background-color: rgba(151, 18, 18, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid rgb(151, 18, 18);
+}
+
+.info-box h3 {
+    margin-top: 0;
+    color: rgb(151, 18, 18);
+}
+
+.success-message {
+    display: none;
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
