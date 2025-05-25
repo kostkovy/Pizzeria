@@ -91,11 +91,19 @@ footer
     display: flex;
     justify-content:center;
     align-items: center;
+
     font-family: 'Open Sans', sans-serif;
     font-size: 1vh;
     height: 6vh;
     background-color: rgb(151, 18, 18);
     padding: 0 20px;
+}
+
+.underfooter
+{
+    padding: 5px;
+    gap: 30px;
+    color: aliceblue;
 }
 
 .logo-container {
@@ -515,4 +523,41 @@ body, .pizza, button {
     text-align: center;
     border-radius: 8px;
     margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    #intro
+    {
+        font-size: 3vh;
+        height: 10vh;
+    }
+
+    .background-image
+    {
+        height: 80vh;
+    }
+
+    article
+    {
+        font-size: 3vh;
+        width: 50vw;
+        flex-direction: column;
+    }
+
+    #main
+    {
+        
+    }
+
+    footer
+    {
+        flex-direction: column;
+        font-size: 3vw;
+        height: auto;
+    }
+}
+
+
+@media (min-width: 769px) {
+   
 }

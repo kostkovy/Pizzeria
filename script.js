@@ -112,6 +112,8 @@ function hideInfo(pizzaName) {
     document.getElementById(`pizza-${pizzaName}`).style.display = 'block';
 }
 
+
+  // wlaczanie trybu ciemnego
 document.addEventListener('DOMContentLoaded', function() {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const body = document.body;
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Sprawdź localStorage
   if(localStorage.getItem('darkMode') === 'enabled') {
     body.classList.add('dark-mode');
-    darkModeToggle.textContent = '🌞 Tryb Jasny';
+    darkModeToggle.textContent = 'Tryb Jasny';
   }
 
   darkModeToggle.addEventListener('click', function(e) {
@@ -128,10 +130,54 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if(body.classList.contains('dark-mode')) {
       localStorage.setItem('darkMode', 'enabled');
-      this.textContent = '🌞 Tryb Jasny';
+      this.textContent = 'Tryb Jasny';
     } else {
       localStorage.setItem('darkMode', 'disabled');
-      this.textContent = '🌓 Tryb Ciemny';
+      this.textContent = 'Tryb Ciemny';
     }
   });
+});
+
+
+// dzialanie formularza
+ document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Tutaj normalnie byłoby wysyłanie formularza, ale dla demonstracji tylko pokazujemy komunikat
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+            
+            // Ukryj komunikat po 5 sekundach
+                setTimeout(function() {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu-links');
+    
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('is-active');
+        menu.classList.toggle('active');
+    });
+    
+    // Zamknięcie menu po kliknięciu w link
+    document.querySelectorAll('.menu-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menu.classList.remove('active');
+            hamburger.classList.remove('is-active');
+        });
+    });
+    
+    // Zamknięcie menu po kliknięciu poza
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+            menu.classList.remove('active');
+            hamburger.classList.remove('is-active');
+        }
+    });
 });
