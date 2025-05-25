@@ -268,20 +268,7 @@
 
     <script>
         // Funkcja do filtrowania pizz
-        function filterPizzas() {
-            const input = document.getElementById('pizzaFilter');
-            const filter = input.value.toUpperCase();
-            const pizzas = document.querySelectorAll('.pizza');
-            
-            pizzas.forEach(pizza => {
-                const name = pizza.querySelector('.napisy').textContent.toUpperCase();
-                if (name.includes(filter)) {
-                    pizza.style.display = 'block';
-                } else {
-                    pizza.style.display = 'none';
-                }
-            });
-        }
+        
     </script>
 <footer>
     <div class="underfooter">
