@@ -79,18 +79,28 @@
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <div class="logo">
-                Pizzeria Podpłomień
-                <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
-            </div>
-            <nav class="menu-links">
-                <a href="index.html">Strona główna</a>
-                <a href="menu.html">Menu</a>
-                <a href="#" id="dark-mode-toggle">Dark Mode</a>
-            </nav>
+    <div class="logo-container">
+        <div class="logo">
+            Pizzeria Podpłomień
+            <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
         </div>
-    </header>
+    </div>
+    
+    <div class="show">
+        <div id="hamburger">
+            <img src="src/hamburger.png" class="icon" onclick="toggleMenu()">
+        </div>
+    </div>
+    
+    <div class="hide" id="mobileMenu">
+        <nav class="menu-links">
+            <a href="index.html">Strona główna</a>
+            <a href="menu.html">Menu</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="#" id="dark-mode-toggle">Tryb Ciemny</a>
+        </nav>
+    </div>
+</header>
 
     <div class="thank-you-container">
         <div class="thank-you-icon">🍕</div>

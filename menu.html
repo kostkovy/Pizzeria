@@ -37,19 +37,28 @@
 </head>
 <body>
     <header>
-        <div class="logo-container">
-            <div class="logo">
-                Pizzeria Podpłomień
-                <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
-            </div>
-            <nav class="menu-links">
-                <a href="index.html">Strona główna</a>
-                <a href="menu.html"class="active">Menu</a>
-                <a href="kontakt.html">Kontakt</a>
-                <a href="#" id="dark-mode-toggle">Tryb ciemny</a>
-            </nav>
+    <div class="logo-container">
+        <div class="logo">
+            Pizzeria Podpłomień
+            <img src="src/img/logo.png" height="50px" width="50px" alt="logo pizzerii">
         </div>
-    </header>
+    </div>
+    
+    <div class="show">
+        <div id="hamburger">
+            <img src="src/hamburger.png" class="icon" onclick="toggleMenu()">
+        </div>
+    </div>
+    
+    <div class="hide" id="mobileMenu">
+        <nav class="menu-links">
+            <a href="index.html">Strona główna</a>
+            <a href="menu.html" class="active">Menu</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="#" id="dark-mode-toggle">Tryb Ciemny</a>
+        </nav>
+    </div>
+</header>
     <div class="background-image">
     <div class="shadow">
             <div id="intro">
@@ -274,12 +283,31 @@
             });
         }
     </script>
-        <footer>
-        <nav class="menu-links">
-        <div>Białystok. Ul.Lipowa 18</div>
-        <div>Nr. tel 999 999 999</div>
-        <div>Made by Maciej Socik and Mikołaj Staniaszek</div>
-        </nav>
-    </footer>
+<footer>
+    <div class="underfooter">
+        <img class="hide" src="src/favicon.ico" alt="">
+    </div>
+
+    <div class="underfooter">
+        <div class="underfooter"><span>Adres:</span></div>
+        <div class="underfooter">15-427 Białystok</div>
+        <div class="underfooter">ul.Lipowa 18. Wejście od strony lewej</div>
+    </div>
+
+    <div class="underfooter">
+        <div class="underfooter"><span>Kontakt:</span></div>
+        <div class="underfooter">Nr. tel 999 998 997</div>
+        <div class="underfooter"><a href="mailto:emailaddress@whatever.com">pizza@podplomien.pl</a></div>
+    </div>
+    
+    <div class="underfooter">
+        <div class="underfooter"><span>© 2025 Pizzeria Podpłomień</span></div>
+        <div class="underfooter">Autorzy: Maciej Socik, Mikołaj Staniaszek</div>
+    </div>
+
+    <div class="underfooter">
+        <img class="hide" src="src/favicon.ico" alt="">
+    </div>
+</footer>
 </body>
 </html>

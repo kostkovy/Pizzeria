@@ -77,6 +77,19 @@ article
     border-radius: 20% 20% 20% 20%;
 }
 
+
+span
+{
+    font-weight: bold;
+}
+
+
+
+a
+{
+    text-decoration: none;
+    color: aliceblue;
+}
 #main
 {
     display: flex;
@@ -91,18 +104,20 @@ footer
     display: flex;
     justify-content:center;
     align-items: center;
-
     font-family: 'Open Sans', sans-serif;
     font-size: 1vh;
-    height: 6vh;
+    height: auto;
     background-color: rgb(151, 18, 18);
     padding: 0 20px;
 }
 
 .underfooter
 {
+        display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
     padding: 5px;
-    gap: 30px;
     color: aliceblue;
 }
 
@@ -525,16 +540,20 @@ body, .pizza, button {
     margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1173px) 
+{
     #intro
     {
-        font-size: 3vh;
+        font-size: 2.2vh;
         height: 10vh;
+        display: flex;
+        align-items: center;
     }
+
 
     .background-image
     {
-        height: 80vh;
+        height: 100vh;
     }
 
     article
@@ -542,11 +561,13 @@ body, .pizza, button {
         font-size: 3vh;
         width: 50vw;
         flex-direction: column;
+        margin: 10%;
     }
 
-    #main
+    .logo-container
     {
-        
+        font-size: 4.5vw;
+
     }
 
     footer
@@ -555,9 +576,73 @@ body, .pizza, button {
         font-size: 3vw;
         height: auto;
     }
+
+    header
+    {
+    position: fixed;
+    width: 100vw;
+    justify-content: space-around;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    }
+
+    .hide {
+        display: none;
+        left: 0;
+        width: 100%;
+        background: var(--header-bg);
+        z-index: 1000;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .menu-links
+    {
+        display: flex;
+        flex-direction: column;
+       
+    }
+    .hide.active {
+        position: absolute;
+        top: 9.5vh;
+        font-size: 3vw;
+        display: flex !important;
+        flex-direction: column;
+        animation: slideDown 0.3s ease;
+    }
+
+    #hamburger img {
+        transition: transform 0.3s ease;
+    }
+
+    #hamburger.active img {
+        transform: rotate(90deg);
+    }
+
+    .wiersz
+    {
+        flex-direction: column wrap;
+    }
 }
 
 
-@media (min-width: 769px) {
-   
+@media (min-width: 1173px)
+{
+  .show
+    {
+        display: none;
+    }
+
+
+        .hide {
+        display: flex !important;
+        margin-left: auto;
+    }
+
+    #hamburger {
+        display: none !important;
+    }
+
 }
