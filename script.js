@@ -181,19 +181,29 @@ async function handleContactForm() {
 }
 
 // Hamburger menu
-function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
+
+ function toggleMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
     const hamburger = document.getElementById('hamburger');
-    menu.classList.toggle('active');
+    
+    // Przełącz klasę 'active' na menu i hamburgerze
+    mobileMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
     
-    document.querySelectorAll('.menu-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
-    });
+    // Zapobiegaj propagacji zdarzenia, aby nie uruchamiało się zamykanie menu
+    event.stopPropagation();
 }
+
+// Zamknij menu po kliknięciu gdziekolwiek indziej
+document.addEventListener('click', function(event) {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    
+    if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target) && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
 
 // Filtrowanie pizz w menu
 function filterPizzas() {
