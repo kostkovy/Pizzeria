@@ -157,8 +157,8 @@
         document.getElementById('orderPrice').textContent = price;
 
         // Losowy czas dostawy od 20 do 60 minut
-        const deliveryMinutes = Math.floor(Math.random() * (60 - 20 + 1)) + 20;
-        document.getElementById('deliveryTime').textContent = `${deliveryMinutes} minut`;
+        
+        document.getElementById('deliveryTime').textContent = localStorage.getItem('losowyczas');
 
         // Dark mode toggle
         document.addEventListener('DOMContentLoaded', function() {
