@@ -1,6 +1,4 @@
-// Funkcje związane z zamawianiem pizzy
 function zamow(pizza, cena1) {
-    // Reset wszystkich składników
     const ingredients = [
         'pepperoni', 'olives', 'mushrooms', 'oregano', 'jalapeno',
         'greenpepper', 'onion', 'ham', 'roastedchicken', 'tomato',
@@ -100,6 +98,7 @@ function hideInfo(pizzaName) {
     document.getElementById(`pizza-${pizzaName}`).style.display = 'block';
 }
 
+
 // Tryb ciemny
 function initializeDarkMode() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -149,7 +148,7 @@ async function handleContactForm() {
         };
 
         try {
-            // Przykładowe API - zamień na swoje
+            // działanie api
             const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
                 method: 'POST',
                 headers: {
@@ -180,7 +179,7 @@ async function handleContactForm() {
     });
 }
 
-// Hamburger menu
+//hamburger menu
 
  function toggleMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
@@ -219,11 +218,35 @@ function filterPizzas() {
     });
 }
 
-// Inicjalizacja wszystkich funkcji po załadowaniu DOM
+//after DOM
 document.addEventListener('DOMContentLoaded', function() {
     initializeDarkMode();
     handleContactForm();
-    
+
+
+//zamawianie pizzy
+        // Generowanie losowego numeru zamówienia
+        document.getElementById('orderNumber').textContent = localStorage.getItem('losowynr')
+        
+        // Wyświetlanie aktualnej daty i godziny
+        const now = new Date();
+        document.getElementById('orderDate').textContent = 
+            now.toLocaleDateString('pl-PL', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+        // Pobranie ceny z localStorage
+        const pricetwo = localStorage.getItem('ostcena') || 0;
+        document.getElementById('orderPrice').textContent = pricetwo;
+
+        // Losowy czas dostawy od 20 do 60 minut
+        
+        document.getElementById('deliveryTime').textContent = localStorage.getItem('losowyczas')+" min";
+
     // Inicjalizacja hamburger menu
     const hamburger = document.getElementById('hamburger');
     if (hamburger) {

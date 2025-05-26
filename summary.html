@@ -10,73 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-     <script src='script.js'></script>
-    <style>
-        .thank-you-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            text-align: center;
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid var(--card-border);
-        }
-
-        .thank-you-icon {
-            font-size: 100px;
-            color: rgb(151, 18, 18);
-            margin-bottom: 20px;
-        }
-
-        .thank-you-title {
-            font-size: 2.5em;
-            color: rgb(151, 18, 18);
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .thank-you-text {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: var(--text-color);
-        }
-
-        .order-details {
-            background-color: rgba(151, 18, 18, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
-            border-left: 4px solid rgb(151, 18, 18);
-        }
-
-        .back-to-menu {
-            display: inline-block;
-            background-color: rgb(151, 18, 18);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: 2px solid rgb(151, 18, 18);
-        }
-
-        .back-to-menu:hover {
-            background-color: #e64a19;
-            border-color: #e64a19;
-            transform: translateY(-3px);
-        }
-
-        .delivery-time {
-            font-size: 1.5em;
-            color: rgb(151, 18, 18);
-            font-weight: bold;
-            margin: 20px 0;
-        }
-    </style>
+    <script src='script.js'></script>
 </head>
 <body>
     <header>
@@ -116,7 +50,7 @@
         <div class="thank-you-icon">🍕</div>
         <h1 class="thank-you-title">Dziękujemy za Twoje zamówienie!</h1>
         <p class="thank-you-text">
-            Twoja pizza została przyjęta do realizacji. Nasi kucharze już przygotowują Twoje ulubione składniki!
+            Twoja pizza została przyjęta do realizacji.
         </p>
 
         <div class="order-details">
@@ -137,54 +71,6 @@
         <a href="menu.html" class="back-to-menu">Wróć do menu</a>
     </div>
 
-    <script>
-        // Generowanie losowego numeru zamówienia
-        document.getElementById('orderNumber').textContent = localStorage.getItem('losowynr')
-            
-
-        // Wyświetlanie aktualnej daty i godziny
-        const now = new Date();
-        document.getElementById('orderDate').textContent = 
-            now.toLocaleDateString('pl-PL', { 
-                day: '2-digit', 
-                month: '2-digit', 
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-
-        // Pobranie ceny z localStorage
-        const price = localStorage.getItem('ostcena') || 0;
-        document.getElementById('orderPrice').textContent = price;
-
-        // Losowy czas dostawy od 20 do 60 minut
-        
-        document.getElementById('deliveryTime').textContent = localStorage.getItem('losowyczas')+" min";
-
-        // Dark mode toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const darkModeToggle = document.getElementById('dark-mode-toggle');
-            const body = document.body;
-
-            if(localStorage.getItem('darkMode') === 'enabled') {
-                body.classList.add('dark-mode');
-                darkModeToggle.textContent = '🌞 Tryb Jasny';
-            }
-
-            darkModeToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                body.classList.toggle('dark-mode');
-
-                if(body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                    this.textContent = '🌞 Tryb Jasny';
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                    this.textContent = '🌓 Tryb Ciemny';
-                }
-            });
-        });
-    </script>
 
     <footer>
     <div class="underfooter">
