@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('summaryBtn').addEventListener('click', () => {
         window.location.href = 'summary.html';
         
-        ocalStorage.setItem('losowyczas', Math.floor(Math.random() * (60 - 20 + 1)) + 20);
+        localStorage.setItem('losowyczas', Math.floor(Math.random() * (60 - 20 + 1)) + 20);
         localStorage.setItem('losowynr', Math.floor(Math.random() * 9000 + 1000));
     });
 });
