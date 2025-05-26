@@ -109,7 +109,7 @@ function initializeDarkMode() {
 
     if (localStorage.getItem('darkMode') === 'enabled') {
         body.classList.add('dark-mode');
-        darkModeToggle.textContent = '🌞 Tryb Jasny';
+        darkModeToggle.textContent = 'Tryb Jasny';
     }
 
     darkModeToggle.addEventListener('click', function(e) {
@@ -118,10 +118,10 @@ function initializeDarkMode() {
 
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('darkMode', 'enabled');
-            this.textContent = '🌞 Tryb Jasny';
+            this.textContent = 'Tryb Jasny';
         } else {
             localStorage.setItem('darkMode', 'disabled');
-            this.textContent = '🌓 Tryb Ciemny';
+            this.textContent = 'Tryb Ciemny';
         }
     });
 }
