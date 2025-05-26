@@ -157,6 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('summaryBtn').addEventListener('click', () => {
         window.location.href = 'summary.html';
+        
+        localStorage.setItem('losowynr', Math.floor(Math.random() * 9000 + 1000));
     });
 });
 // Dark mode toggle

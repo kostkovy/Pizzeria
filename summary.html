@@ -138,8 +138,8 @@
 
     <script>
         // Generowanie losowego numeru zamówienia
-        document.getElementById('orderNumber').textContent = 
-            Math.floor(Math.random() * 9000 + 1000);
+        document.getElementById('orderNumber').textContent = localStorage.getItem('losowynr')
+            
 
         // Wyświetlanie aktualnej daty i godziny
         const now = new Date();
