@@ -24,6 +24,7 @@ for (const key in ingredients) {
 }
 
 let basePrice = parseInt(localStorage.getItem('Cena')) || 0;
+
 let price = basePrice;
 
 function updatePrice() {
@@ -34,6 +35,7 @@ function updatePrice() {
     price = basePrice + extraCount * 2;
     if (price < basePrice) price = basePrice;
     document.getElementById('price').innerText = price + ' zł';
+    localStorage.setItem('ostcena', price);
 }
 
 function drawPizzaBase() {
