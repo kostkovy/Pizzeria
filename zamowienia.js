@@ -129,19 +129,19 @@ function setupIngredientPanel() { //dla kazdego skladniku tworzy opcje
             <span id="count-${key}">0</span>
             <button data-key="${key}" data-action="+">+</button>
         `;
-        list.appendChild(item);
+        list.appendChild(item);//dodawanie dla kazdego skladniku
     }
 
     list.addEventListener('click', e => {
         if (e.target.tagName === 'BUTTON') {
-            const key = e.target.dataset.key;
-            const act = e.target.dataset.action;
+            const key = e.target.dataset.key;// nazwa skłądnika
+            const act = e.target.dataset.action; // + czy -
             if (act === '+') {
                 extraConfig[key]++;
             } else if (act === '-' && extraConfig[key] > 0) {
                 extraConfig[key]--;
-            }
-            document.getElementById(`count-${key}`).innerText = extraConfig[key];
+            }//jesli + zwiekszamy o jeden jesli minus zmniejszamy o 1
+            document.getElementById(`count-${key}`).innerText = extraConfig[key];//aktualizacja licznika danego skłądnika
             updatePrice();
             drawPizza();
         }
