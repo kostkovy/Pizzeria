@@ -185,12 +185,10 @@ async function handleContactForm() {
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburger = document.getElementById('hamburger');
     
-    // Przełącz klasę 'active' na menu i hamburgerze
     mobileMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
     
-    // Zapobiegaj propagacji zdarzenia, aby nie uruchamiało się zamykanie menu
-    event.stopPropagation();
+    
 }
 
 // Zamknij menu po kliknięciu gdziekolwiek indziej
@@ -198,7 +196,7 @@ document.addEventListener('click', function(event) {
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburger = document.getElementById('hamburger');
     
-    if (!mobileMenu.contains(event.target) && !hamburger.contains(event.target) && mobileMenu.classList.contains('active')) {
+    if ( !hamburger.contains(event.target) && mobileMenu.classList.contains('active')) {
         mobileMenu.classList.remove('active');
         hamburger.classList.remove('active');
     }
@@ -210,7 +208,7 @@ function filterPizzas() {
     if (!input) return;
     
     const filter = input.value.toUpperCase();
-    const pizzas = document.querySelectorAll('.pizza');
+    const pizzas = document.querySelectorAll('.pizza');//pobier awszystkie elementy z klasą pizza
     
     pizzas.forEach(pizza => {
         const name = pizza.querySelector('.napisy').textContent.toUpperCase();
@@ -224,8 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
     handleContactForm();
 
 
-//zamawianie pizzy
-        // Generowanie losowego numeru zamówienia
+
+        // loswy numer zamówienia
         document.getElementById('orderNumber').textContent = localStorage.getItem('losowynr')
         
         // Wyświetlanie aktualnej daty i godziny
@@ -243,19 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const pricetwo = localStorage.getItem('ostcena') || 0;
         document.getElementById('orderPrice').textContent = pricetwo;
 
-        // Losowy czas dostawy od 20 do 60 minut
+        // Losowy czas dostawy 
         
         document.getElementById('deliveryTime').textContent = localStorage.getItem('losowyczas')+" min";
 
-    // Inicjalizacja hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMenu);
-    }
-    
-    // Inicjalizacja filtrowania pizz
-    const pizzaFilter = document.getElementById('pizzaFilter');
-    if (pizzaFilter) {
-        pizzaFilter.addEventListener('keyup', filterPizzas);
-    }
+   
 });

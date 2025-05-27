@@ -42,22 +42,22 @@ function drawPizzaBase() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.fillStyle = '#f5d742';
-    ctx.arc(200, 200, 180, 0, Math.PI * 2);
+    ctx.arc(200, 200, 180, 0, Math.PI * 2);//ciasto 
     ctx.fill();
 
     ctx.beginPath();
     ctx.strokeStyle = '#d4a42c';
     ctx.lineWidth = 15;
-    ctx.arc(200, 200, 180, 0, Math.PI * 2);
+    ctx.arc(200, 200, 180, 0, Math.PI * 2);//brzeg pizzy
     ctx.stroke();
 
     ctx.beginPath();
     ctx.fillStyle = '#d62828';
-    ctx.arc(200, 200, 165, 0, Math.PI * 2);
+    ctx.arc(200, 200, 165, 0, Math.PI * 2);//sos pomidoroy
     ctx.fill();
 
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(255,255,0,0.4)';
+    ctx.fillStyle = 'rgba(255,255,0,0.4)';//ser
     ctx.arc(200, 200, 160, 0, Math.PI * 2);
     ctx.fill();
 }
@@ -68,12 +68,12 @@ function drawSlices() {
     ctx.lineWidth = 1;
     for (let i = 0; i < 8; i++) {
         const a = i * Math.PI / 4;
-        ctx.moveTo(200, 200);
+        ctx.moveTo(200, 200);//od srodka pizzy
         ctx.lineTo(200 + Math.cos(a) * 180, 200 + Math.sin(a) * 180);
     }
     ctx.stroke();
 }
-
+                                //min odleglos od srodka , max odleglosc od srodka, minimalna odleglosc miedzy skladnikami
 function generatePositions(count, minR = 50, maxR = 160, minD = 30) {
     const pos = [], c = { x: 200, y: 200 };
     while (pos.length < count) {
@@ -91,7 +91,7 @@ function generatePositions(count, minR = 50, maxR = 160, minD = 30) {
 function loadImage(src) {
     return new Promise((res, rej) => {
         const i = new Image();
-        i.onload = () => res(i);
+        i.onload = () => res(i);// tworzy nowy obiekt do wczytania obrazku
         i.onerror = rej;
         i.src = src;
     });
@@ -101,15 +101,13 @@ async function drawIngredients() {
     for (const key in ingredients) {
         const total = baseConfig[key] + extraConfig[key];
         if (total > 0) {
-            try {
+           
                 const img = await loadImage(ingredients[key].img);
                 const positions = generatePositions(total);
                 positions.forEach(p => {
                     ctx.drawImage(img, p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
                 });
-            } catch (e) {
-                console.warn(`Błąd ładowania obrazka: ${ingredients[key].img}`, e);
-            }
+            
         }
     }
 }
@@ -120,7 +118,7 @@ async function drawPizza() {
     drawSlices();
 }
 
-function setupIngredientPanel() {
+function setupIngredientPanel() { //dla kazdego skladniku tworzy opcje
     const list = document.getElementById('ingredientList');
     for (const key in ingredients) {
         const item = document.createElement('div');
